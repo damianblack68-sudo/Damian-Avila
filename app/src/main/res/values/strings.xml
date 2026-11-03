@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Onyx Open</string>
+    <string name="tile_voice_label">Onyx IA Voz</string>
+    <string name="tile_voice_subtitle">Comando Rápido Ejecutivo</string>
+    <string name="widget_name">Onyx IA Acceso Rápido</string>
+    <string name="widget_description">Widget de pantalla de inicio para hablar con Onyx IA y acceder rápidamente al chat.</string>
+</resources>
+

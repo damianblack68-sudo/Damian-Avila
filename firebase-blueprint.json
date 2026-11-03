@@ -1,0 +1,161 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Perfil del usuario con rol, suscripción y credenciales seguras de Firebase Auth",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "Correo electrónico verificado del usuario"
+        },
+        "username": {
+          "type": "string",
+          "description": "Nombre de usuario o seudónimo de visualización"
+        },
+        "role": {
+          "type": "string",
+          "description": "Rol de acceso (ADMIN_CREATOR, STUDENT, TEACHER, STANDARD_USER)"
+        },
+        "subscription": {
+          "type": "string",
+          "description": "Nivel de suscripción actual (FREE, PRO, PLUS, EVOLUTION)"
+        },
+        "qrCodeId": {
+          "type": "string",
+          "description": "Identificador único para el pase de autenticación QR"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Marca de tiempo de creación gestionada por el servidor (FieldValue.serverTimestamp)"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Marca de tiempo de actualización gestionada por el servidor (FieldValue.serverTimestamp)"
+        }
+      },
+      "required": ["email", "username", "role", "subscription", "qrCodeId"]
+    },
+    "UserTask": {
+      "title": "UserTask",
+      "description": "Tarea privada del workspace del usuario",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Título de la tarea ejecutiva"
+        },
+        "description": {
+          "type": "string",
+          "description": "Descripción detallada de la directiva"
+        },
+        "isCompleted": {
+          "type": "boolean",
+          "description": "Estado de completitud de la tarea"
+        },
+        "category": {
+          "type": "string",
+          "description": "Categoría organizativa"
+        },
+        "priority": {
+          "type": "string",
+          "description": "Prioridad ejecutiva (ALTA, MEDIA, BAJA)"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Marca de tiempo de creación"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Marca de tiempo de actualización"
+        }
+      },
+      "required": ["title", "isCompleted"]
+    },
+    "UserNote": {
+      "title": "UserNote",
+      "description": "Nota confidencial privada del usuario",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Título de la nota confidencial"
+        },
+        "content": {
+          "type": "string",
+          "description": "Contenido cifrado o privado de la nota"
+        },
+        "category": {
+          "type": "string",
+          "description": "Categoría de la nota"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Marca de tiempo de creación"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Marca de tiempo de actualización"
+        }
+      },
+      "required": ["title", "content"]
+    },
+    "AppUpdate": {
+      "title": "AppUpdate",
+      "description": "Novedad, versión o cambio de la aplicación comunicado proactivamente al usuario",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Título de la actualización o cambio"
+        },
+        "version": {
+          "type": "string",
+          "description": "Versión del sistema o identificador de release"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Resumen ejecutivo de los cambios y nuevas funciones"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Marca de tiempo de publicación de la actualización"
+        }
+      },
+      "required": ["title", "version", "summary"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/UserProfile"
+      },
+      "description": "Documentos de perfiles de usuario accesibles únicamente por el usuario autenticado dueño del uid."
+    },
+    "/users/{userId}/tasks/{taskId}": {
+      "schema": {
+        "$ref": "#/entities/UserTask"
+      },
+      "description": "Tareas privadas de workspace aisladas por usuario."
+    },
+    "/users/{userId}/notes/{noteId}": {
+      "schema": {
+        "$ref": "#/entities/UserNote"
+      },
+      "description": "Notas confidenciales del workspace aisladas por usuario."
+    },
+    "/app_updates/{updateId}": {
+      "schema": {
+        "$ref": "#/entities/AppUpdate"
+      },
+      "description": "Avisos de cambios y actualizaciones de la app leídos por usuarios autenticados y gestionados por administradores."
+    }
+  }
+}

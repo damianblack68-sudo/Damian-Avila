@@ -1,0 +1,6 @@
+{
+  "name": "Onyx Open",
+  "description": "IA inteligente con análisis matemático, workspace Notion para productividad, diagramas, mapas mentales, escaneo y voz.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
